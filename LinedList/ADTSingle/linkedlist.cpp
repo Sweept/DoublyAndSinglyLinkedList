@@ -111,6 +111,28 @@ void linkedlist::popback()
 		size--;
 	}
 }
+void linkedlist::delete(int index)
+{
+
+	if (head) {
+		if (head->next == nullptr) {
+			delete head;
+			head = nullptr;
+		} else 
+		{
+			node* prevnode = head;
+			node *currentnode = head->next;
+			for (int i = 0; i < index; i++)
+			{
+				prevnode = currentnode;
+				currentnode = currentnode->next;
+			}
+			delete currentnode;
+			prevnode->next = nullptr;
+		}
+		size--;
+	}
+}
 void linkedlist::insert(int val, int index)
 {
 	if (index > size) {
