@@ -20,6 +20,7 @@ public:
 	void pushFront(double val);
 	void pop();
 	void popback();
+	void delete(int index);
 	void insert(int val, int index);
 	void deleteDuplicates(int val);
 	node * mtoLastElement(int M);
