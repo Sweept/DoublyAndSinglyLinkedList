@@ -121,6 +121,29 @@ void linkedlist::popback()
 		size--;
 	}
 }
+void linkedlist::delete(int index) 
+{
+	if (index > size) {
+		cout << "The index is too big." << endl;
+		return;
+	}
+	node * newNode = new node;
+	newNode->data = val;
+	node * currentnode = head;
+	
+	if (head) 
+	{
+		for (int i = 0; i < index; i++) 
+		{
+			currentnode = currentnode->next;
+		}
+		newNode->next = currentnode->next;
+		newNode->prev = currentnode;
+		currentnode->next->prev = newNode;
+		currentnode->next = newNode;
+		size++;
+	}
+}
 void linkedlist::insert(int index, int val) 
 {
 	if (index > size) {
