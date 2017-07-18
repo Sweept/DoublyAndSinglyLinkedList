@@ -57,6 +57,27 @@ void pushBack(node *&head, string newPersonName)
 	}
 }
 
+node * delete(node *head, int index)
+{
+	//first detach the node from list and then delete
+	if(head == NULL){
+		return NULL;
+	}
+	node *prevNode = NULL;
+	node *currentNode = head;
+	for (int i = 0; i < index; i++){
+		prevNode = currentNode;
+		currentnode = currentNode->next;
+	}
+	if(currentNode == head){
+		node * newHead = currentNode->next;
+		delete currentNode;
+		return newHead;
+	}
+	prevNode->next = currentNode->next;
+	delete currentNode;
+	return head;
+}
 void deleteNode(node *&head, string nametoDelete)
 {
 	//first detach the node from list and then delete
@@ -81,6 +102,7 @@ void deleteNode(node *&head, string nametoDelete)
 		currentNode = currentNode->next;
 	}
 }
+
 
 void printList(node *head)
 {
