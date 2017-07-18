@@ -133,21 +133,35 @@ void linkedlist::delete(int index)
 		size--;
 	}
 }
-void linkedlist::insert(int val, int index)
+void linkedlist::insert(node *&head, int val, int index)
 {
 	if (index > size) {
 		cout << "The index is too big." << endl;
 		return;
 	}
-	node * newNode = new node;
-	newNode->data = val;
-	node * currentnode = head;
-	for (int i = 0; i < index; i++)
-	{
-		currentnode = currentnode->next;
-	}
-	newNode->next = currentnode->next;
-	currentnode->next = newNode->next;
+node * newNode = new node;
+    newNode->data = data;
+    newNode->next = NULL;
+    if (head == NULL || index == 0){
+        newNode->next = head;
+        head = newNode;
+	    return;
+    }
+    node * prevNode = NULL;
+    node * currentNode = head;
+    for(int i = 1; i <= index; i++) {
+        prevNode = currentNode;
+        currentNode = currentNode->next;
+    }
+    //insert after last node is a special case
+    //in this case currentNode will be NULL
+    
+    if (currentNode == NULL) {
+        prevNode->next = newNode;
+        return head;
+    }
+    prevNode->next = newNode;
+    newNode->next = currentNode;
 	size++;
 }
 void linkedlist::deleteDuplicates(int val)
